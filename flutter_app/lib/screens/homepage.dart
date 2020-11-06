@@ -62,20 +62,7 @@ class _HomepageState extends State<Homepage> {
     if (this.mounted){
       super.initState();
     }
-//    getActivityId().then((value){
-//      print(_activityId);
-//    });
   }
-
-//  getActivityId() async {
-//    var db = DBProvider.db;
-//    List<Model> activities = await db.activities();
-//    var activityId = activities.length + 1;
-//    setState(() {
-//      _activityId = activityId;
-//    });
-//
-//  }
 
   void _onDataNoise(NoiseReading noiseReading){
     this.setState(() {

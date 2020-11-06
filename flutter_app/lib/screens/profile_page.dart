@@ -15,6 +15,7 @@ import 'package:http/http.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:workmanager/workmanager.dart';
+import 'package:flutterapp/form/dialog/platform_dialog.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -93,7 +94,6 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {
         _validate = false;
       });
-
     }
   }
 
@@ -152,6 +152,18 @@ class _ProfilePageState extends State<ProfilePage> {
         _getDatabase();
       });
     }
+  }
+
+  _getDatabase() async {
+    var db = DBProvider.db;
+    var userData = await db.queryUser();
+    var _userCsv = mapListToCsv(userData);
+    print("uploading data");
+    var url = 'https://drive.switch.ch/public.php/webdav/';
+    String _userFilename = await _getFileName("user");
+    TextStorage userStorage = new TextStorage(filename: _userFilename);
+    File userFile = await userStorage.writeFile(_userCsv);
+    uploadFile(userFile.path, "$url/$_userFilename");
   }
 
   Future<String> uploadFile(filename, url) async {
@@ -236,19 +248,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ..addAll(data));
   }
 
-
-  _getDatabase() async {
-    var db = DBProvider.db;
-    var userData = await db.queryUser();
-    var _userCsv = mapListToCsv(userData);
-    print("uploading data");
-    var url = 'https://drive.switch.ch/public.php/webdav/';
-    String _userFilename = await _getFileName("user");
-    TextStorage userStorage = new TextStorage(filename: _userFilename);
-    File userFile = await userStorage.writeFile(_userCsv);
-    uploadFile(userFile.path, "$url/$_userFilename");
-  }
-
   File _activityFile;
   File _accdataFile;
   File _gyrodataFile;
@@ -319,6 +318,40 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  void onSubmit(bool result) async {
+    print(result);
+    if (result){
+      Fluttertoast.showToast(
+        msg: "Data uploaded",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Something went wrong: data could not be uploaded",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
+
+  _platformDialog(){
+    var _dialog = new PlatformDialog(onSubmit: onSubmit);
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) => _dialog
+    );
+  }
+
   Future<LoginModel> _user = Future<LoginModel>.delayed(
     Duration(seconds: 1),
         () => _currentUser,
@@ -326,9 +359,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-
     final fullWidth = MediaQuery.of(context).size.width;
-
     final profile = new Container(
       height: 170,
       width: fullWidth,
@@ -369,7 +400,8 @@ class _ProfilePageState extends State<ProfilePage> {
             children: <Widget>[
               RawMaterialButton(
                 onPressed: () {
-                  _upload();
+                  // _upload();
+                  _platformDialog();
                 },
                 elevation: 2.0,
                 fillColor: Colors.white,

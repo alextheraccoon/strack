@@ -98,23 +98,12 @@ class QuestionnaireState extends State<ActivityQuestionnaire>{
       widget.timer.reset();
       widget.onSubmit(true);
       Navigator.pop(context);
-
     } else {
       print("form not completed");
       setState(() {
         _complete = false;
       });
     }
-
-//    List<Model> _activities = await db.activities();
-//    List<AccModel> _accData = await db.accData();
-//    List<GyroModel> _gyroData = await db.gyroData();
-//    List<NoiseModel> _noiseData = await db.noiseData();
-//    print("ACTIVITIES: $_activities");
-//    print("ACCDATA: $_accData");
-//    print("GYRODATA: $_gyroData");
-//    print("NOISEDATA: $_noiseData");
-    print("activity saved!");
   }
 
   @override

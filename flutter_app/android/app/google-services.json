@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "977856464237",
+    "firebase_url": "https://strack-3f8f8.firebaseio.com",
+    "project_id": "strack-3f8f8",
+    "storage_bucket": "strack-3f8f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977856464237:android:4d89f1b97c78f4599a8664",
+        "android_client_info": {
+          "package_name": "com.example.strack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977856464237-efjepbmuo1eauip9lpflhpu6iigko1j3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.strack",
+            "certificate_hash": "eed40c5500da667cc3158423bcd71368aaa1b9b5"
+          }
+        },
+        {
+          "client_id": "977856464237-2im159o900hiv427cgqob2pk2u7ln4o1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_tqhUHpJxXR6jz4kuhJnkedVlbwsc044"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977856464237-2im159o900hiv427cgqob2pk2u7ln4o1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

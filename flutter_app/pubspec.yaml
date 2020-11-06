@@ -35,6 +35,9 @@ dependencies:
   path_provider: ^1.6.7
   csv: ^4.0.3
   noise_meter: ^1.2.0
+  googleapis: ^0.56.1
+  google_sign_in: ^4.5.6
+  googleapis_auth: ^0.2.12
 
 
 
