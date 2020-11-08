@@ -183,38 +183,44 @@ class GoogleDialogState extends State<GoogleDriveDialog>{
   Widget build(BuildContext context) {
 
     final _button = Container(
-        child: FlatButton(
-          onPressed: () {
-            submit();
-          },
-          textColor: Colors.white,
-          padding: const EdgeInsets.all(0.0),
-          child: Container(
-            alignment: Alignment.center,
-            color: Colors.white,
-            padding: const EdgeInsets.all(10.0),
-            child:
-            const Text('Upload to Google Drive', style: TextStyle(fontSize: 20, color: Colors.black)),
-          ),
-        )
+      child: RaisedButton(
+        onPressed: () {
+          submit();
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(5.0),
+        ),
+        child: new Text("Upload to Google Drive", style: TextStyle(fontSize: 16, color: Colors.white),),
+        color: Color(0xFF448AFF),
+      ),
     );
 
 
     return SimpleDialog(
-      title: Text("Provide here your credentials:"),
+      title: Text("Upload to Google Drive cloud:"),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       contentPadding: EdgeInsets.fromLTRB(5, 30, 0, 20),
       children: <Widget>[
-        Container(
-          height: 300,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 30),
-                _button,
-              ]
-          ),
-        )
+        Center(
+            child:
+            new Container(
+              height: 300,
+              alignment: Alignment(0.0, 0.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 30,),
+                  new Container(
+                    width: 100,
+                    height: 100,
+                    child: Image.asset('assets/images/googleDriveIcon.png'),
+                  ),
+                  SizedBox(height: 30,),
+                  _button
+                ],
+              ),
+            )
+        ),
       ],
     );
   }

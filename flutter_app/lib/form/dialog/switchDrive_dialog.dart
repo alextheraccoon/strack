@@ -216,78 +216,99 @@ class SwitchDialogState extends State<SwitchDriveDialog>{
   Widget build(BuildContext context) {
 
     final _username = Container(
+      width: 250,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("SwitchDrive username:"),
+          Text("SwitchDrive username:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+          SizedBox(height: 10,),
           TextField(
-            controller: usernameController,
-            obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
               labelText: 'Username',
+              contentPadding: EdgeInsets.all(8.0),
+              fillColor: Colors.white70,
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(30.0),
+                borderSide: new BorderSide(),
+              ),
+              filled: true,
               errorText: valUsername ? null : 'Value Can\'t Be Empty',
             ),
+            controller: usernameController,
+            obscureText: false,
           ),
         ],
       ),
     );
 
     final _token = Container(
+      width: 250,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("SwitchDrive token:"),
+          Text("SwitchDrive token:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+          SizedBox(height: 10,),
           TextField(
-            controller: tokenController,
-            obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              contentPadding: EdgeInsets.all(8.0),
+              fillColor: Colors.white70,
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(30.0),
+                borderSide: new BorderSide(),
+              ),
+              filled: true,
               labelText: 'Token',
               errorText: valToken ? null : 'Value Can\'t Be Empty',
             ),
+            controller: tokenController,
+            obscureText: true,
           ),
         ],
       ),
     );
 
     final _link = Container(
+      width: 250,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("SwitchDrive repository link:"),
+          Text("SwitchDrive folder link:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+          SizedBox(height: 10,),
           TextField(
-            controller: linkController,
-            obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              contentPadding: EdgeInsets.all(8.0),
+              fillColor: Colors.white70,
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(30.0),
+                borderSide: new BorderSide(),
+              ),
               labelText: 'Link',
               errorText: valLink ? null : 'Value Can\'t Be Empty',
             ),
+            controller: linkController,
+            obscureText: true,
           ),
         ],
       ),
     );
 
     final _button = Container(
-      child: FlatButton(
+      child: RaisedButton(
         onPressed: () {
           setState(() {
             usernameController.text.isEmpty ? valUsername = false : valUsername = true;
             linkController.text.isEmpty ? valLink = false : valLink = true;
             tokenController.text.isEmpty ? valToken = false : valToken = true;
           });
-
           if (valToken && valLink && valUsername){
             submit();
           }
           },
-        textColor: Colors.white,
-        padding: const EdgeInsets.all(0.0),
-        child: Container(
-          alignment: Alignment.center,
-          color: Colors.white,
-          padding: const EdgeInsets.all(10.0),
-          child:
-          const Text('Submit', style: TextStyle(fontSize: 20, color: Colors.black)),
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(5.0),
         ),
+        child: new Text("Upload to Switch Drive", style: TextStyle(fontSize: 16, color: Colors.white),),
+        color: Color(0xFF448AFF),
       )
     );
 
@@ -297,23 +318,27 @@ class SwitchDialogState extends State<SwitchDriveDialog>{
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       contentPadding: EdgeInsets.fromLTRB(5, 30, 0, 20),
       children: <Widget>[
-        Container(
-          height: 500,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 30),
-                _username,
-                const SizedBox(height: 30),
-                _token,
-                const SizedBox(height: 30),
-                _link,
-                const SizedBox(height: 30),
-                _button,
-
-              ]
+        Center(
+          child: Container(
+            height: 500,
+            width: 300,
+            alignment: Alignment(0.0, 0.0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 10),
+                  _username,
+                  const SizedBox(height: 30),
+                  _token,
+                  const SizedBox(height: 30),
+                  _link,
+                  const SizedBox(height: 60),
+                  _button,
+                ]
+            ),
           ),
         )
+
       ],
     );
   }
